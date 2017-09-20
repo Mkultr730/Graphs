@@ -5,6 +5,8 @@
  */
 package graphs;
 
+import graphs.view.Form;
+
 /**
  *
  * @author Usuario

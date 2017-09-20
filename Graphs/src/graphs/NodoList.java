@@ -5,17 +5,18 @@
  */
 package graphs;
 
-import java.util.ArrayList;
-
 /**
  *
  * @author Usuario
  */
-public class Nodo {
+public class NodoList {
     private String elem;
-    private ArrayList<Nodo> ady;
+    private int size;
+    private NodoList link;
 
-    public Nodo() {
+    public NodoList(String elem, int size) {
+        this.setElem(elem);
+        this.setSize(size);
     }
 
     public String getElem() {
@@ -26,21 +27,20 @@ public class Nodo {
         this.elem = elem;
     }
 
-    public ArrayList<Nodo> getLink() {
-        return ady;
+    public int getSize() {
+        return size;
     }
 
-    public void setLink(ArrayList<Nodo> link) {
-        this.ady = link;
+    public void setSize(int size) {
+        this.size = size;
+    }
+
+    public NodoList getLink() {
+        return link;
+    }
+
+    public void setLink(NodoList link) {
+        this.link = link;
     }
     
-    public void add(Nodo nodo){
-        this.add(nodo);
-    }
-    
-    public Nodo generateGraph(int Matriz[][], NodoList list[]){
-        Nodo root = null;
-        
-        return root;
-    }
 }
