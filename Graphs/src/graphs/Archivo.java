@@ -68,4 +68,37 @@ public class Archivo {
         br.close();
         return size;
     }
+    
+    public NodoList[] loadList() throws FileNotFoundException, IOException{
+        NodoList[] lista;
+        File l = new File("lista.txt");
+        FileReader fr = new FileReader(l);
+        BufferedReader br = new BufferedReader(fr);
+        String line;
+        n = tam(l);
+        lista = new NodoList[n];
+        int c = 0;
+        while((line = br.readLine())!= null){
+            String v[] = line.split("->");
+            NodoList ptr = null;
+            for (int i = 0; i < v.length; i++) {
+                if (i == 0) {
+                    ptr = new NodoList(v[i]+"",0);
+                }else{
+                    char elem = v[i].charAt(0);
+                    int size = Integer.parseInt(v[i].substring(2, v[i].length()-1));
+                    NodoList p = new NodoList(v[i]+"", size);
+                    NodoList q = ptr;
+                    while(q.getLink() != null){
+                        q = q.getLink();
+                    }
+                    q.setLink(p);
+                }
+            }
+            lista[c] = ptr;
+            c += 1;
+        }
+        br.close();
+        return lista;
+    }
 }
