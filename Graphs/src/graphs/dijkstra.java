@@ -9,6 +9,7 @@ package graphs;
  *
  * @author Usuario
  */
+import static graphs.view.Form.dj;
 import java.io.*;
 import java.util.*;
 import javax.swing.JOptionPane;
@@ -35,18 +36,14 @@ public class dijkstra {
         this.matrizAdy = matriz;
         this.nNodos = matriz.length;
         int aux = 0;
-        l1 = new InputStreamReader(System.in);
-        l2 = new BufferedReader(l1);
-        nNodos = 5;
         do {
             try {
-                char r = JOptionPane.showInputDialog(null, "¿Cuál es el nodo origen?").charAt(0);
+                char r = JOptionPane.showInputDialog(null, "¿Cuál es el nodo origen? \n (Digitelo en MAYUS)").charAt(0);
                 aux = ((int) (r)) - 65;
             } catch (StringIndexOutOfBoundsException e3) {
                 System.out.println("Error: " + e3);
                 aux = -1;
             }
-            System.out.println(aux);
         } while (aux < 0 || aux > nNodos - 1);
         matrizAdy[aux][aux] = 0;
         resuelve(aux);
@@ -85,6 +82,7 @@ public class dijkstra {
         }
         //Imprimiendo resultados
         System.out.print("\n -> Resultados <-");
+        dj+= "-> Resultados <- \n";
         for (int k = 0; k < caminos.size(); k++) {
             if (k != origen) {
                 tmp = (String) (caminos.get(k)) + (char) (k + 65);
@@ -133,13 +131,18 @@ public class dijkstra {
 
     public void imprimeCamino(String cam, int nod, int o) {
         System.out.print("\nCamino: ");
+        dj+= "Camino: \n";
         if (cam.charAt(0) == '*') {
             System.out.print("No hay camino de: " + (char) (o + 65) + " a: " + cam.charAt(cam.length() - 1) + "!!");
+            dj+="No hay camino de: " + (char) (o + 65) + " a: " + cam.charAt(cam.length() - 1) + "!! \n";
         } else {
             for (int i = 0; i < cam.length(); i++) {
                 System.out.print("" + cam.charAt(i) + (i == cam.length() - 1 ? "" : "->"));
+                dj+= "" + cam.charAt(i) + (i == cam.length() - 1 ? "" : "->");
             }
             System.out.print(" costo: " + matrizAdy[nod][nod]);
+            dj+=" costo: " + matrizAdy[nod][nod] + "\n";
         }
+        
     }
 }

@@ -23,8 +23,9 @@ public class Recorrido {
         this.Matriz = Matriz;
     }
 
-    public Recorrido(NodoList[] list) {
+    public Recorrido(NodoList[] list, int n) {
         this.list = list;
+        this.Matriz = new int[n][n];
     }
 
     public void DFSM() {
@@ -48,17 +49,17 @@ public class Recorrido {
     }
 
     public void BFSM() {
-        Queue pila = new LinkedList();
+        Queue cola = new LinkedList();
         boolean visto[] = new boolean[this.Matriz.length];
-        pila.add(0);
+        cola.add(0);
         String r = "";
         visto[0] = true;
-        while (!pila.isEmpty()) {
-            int d = (int) (pila.remove());
+        while (!cola.isEmpty()) {
+            int d = (int) (cola.remove());
             r += (d + 1) + ",";
             for (int i = 0; i < this.Matriz.length; i++) {
                 if (this.Matriz[d][i] != 0 && !visto[i]) {
-                    pila.add(i);
+                    cola.add(i);
                     visto[i] = true;
                 }
             }
@@ -90,20 +91,20 @@ public class Recorrido {
     }
 
     public void BFSL() {
-        Queue pila = new LinkedList();
+        Queue cola = new LinkedList();
         boolean visto[] = new boolean[this.Matriz.length];
-        pila.add(this.list[0]);
+        cola.add(this.list[0]);
         String r = "";
         visto[0] = true;
-        while (!pila.isEmpty()) {
-            int d = ((NodoList) pila.remove()).getElem();
+        while (!cola.isEmpty()) {
+            int d = ((NodoList) cola.remove()).getElem();
             NodoList n = list[d - 1];
             visto[n.getElem() - 1] = true;
             r += (n.getElem()) + ",";
             n = n.getLink();
             while (n != null) {
                 if (!visto[n.getElem() - 1]) {
-                    pila.add(n);
+                    cola.add(n);
                     visto[n.getElem() - 1] = true;
                 }
                 n = n.getLink();
