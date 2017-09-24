@@ -39,7 +39,7 @@ public class Insert extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        vertex = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -77,7 +77,7 @@ public class Insert extends javax.swing.JFrame {
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(111, 111, 111)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(vertex, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(206, 206, 206)
                         .addComponent(jButton1)))
@@ -91,7 +91,7 @@ public class Insert extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(vertex, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26)
                 .addComponent(jButton1)
                 .addContainerGap(27, Short.MAX_VALUE))
@@ -112,14 +112,14 @@ public class Insert extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        String v[] = jTextField1.getText().split(",");
+        String v[] = vertex.getText().split(",");
         int x = ((int) letra - 65), y;
-        NodoList ptr = new NodoList(letra + "", 0);
+        NodoList ptr = new NodoList((int)letra-64, 0);
         for (int j = 0; j < v.length; j++) {
             y = (int) (v[j].charAt(0)) - 65;
             int size = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese el peso de la arista " + letra + v[j]));
             Matriz[x][y] = size;
-            NodoList p = new NodoList(v[j], size);
+            NodoList p = new NodoList((int)(v[j].charAt(0)) - 64, size);
             NodoList q = ptr;
             while (q.getLink() != null) {
                 q = q.getLink();
@@ -170,6 +170,6 @@ public class Insert extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField vertex;
     // End of variables declaration//GEN-END:variables
 }

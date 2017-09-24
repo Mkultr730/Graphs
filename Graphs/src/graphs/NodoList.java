@@ -10,20 +10,20 @@ package graphs;
  * @author Usuario
  */
 public class NodoList {
-    private String elem;
+    private int elem;
     private int size;
     private NodoList link;
 
-    public NodoList(String elem, int size) {
+    public NodoList(int elem, int size) {
         this.setElem(elem);
         this.setSize(size);
     }
 
-    public String getElem() {
+    public int getElem() {
         return elem;
     }
 
-    public void setElem(String elem) {
+    public void setElem(int elem) {
         this.elem = elem;
     }
 

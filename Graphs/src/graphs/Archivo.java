@@ -57,6 +57,31 @@ public class Archivo {
         }
         bw.close();
     }
+    public void saveList(NodoList list[]) throws IOException{
+        File archivo = new File("lista.txt");
+        FileWriter fw = new FileWriter(archivo);
+        BufferedWriter bw = new BufferedWriter(fw);
+        bw.write("");
+        for (int i = 0; i < list.length; i++) {
+            NodoList ptr = list[i];
+            NodoList p = ptr;
+            String line = "";
+            int sw = 0;
+            while(p != null){
+                if (sw == 0) {
+                    line+= p.getElem();
+                    sw = 1;
+                }else{
+                    line += "->"+p.getElem()+"("+p.getSize()+")";
+                }
+                p = p.getLink();
+            }
+            bw.write(line);
+            bw.newLine();
+        }
+        bw.close();
+        
+    }
     public int tam(File matriz) throws IOException{
         FileReader fr = new FileReader(matriz);
         BufferedReader br = new BufferedReader(fr);
@@ -77,17 +102,20 @@ public class Archivo {
         String line;
         n = tam(l);
         lista = new NodoList[n];
+        Matriz = new int[n][n];
         int c = 0;
         while((line = br.readLine())!= null){
             String v[] = line.split("->");
             NodoList ptr = null;
             for (int i = 0; i < v.length; i++) {
                 if (i == 0) {
-                    ptr = new NodoList(v[i]+"",0);
+                    ptr = new NodoList(Integer.parseInt(v[i]),0);
                 }else{
-                    char elem = v[i].charAt(0);
+                    int elem = Integer.parseInt(v[i].charAt(0)+"");
                     int size = Integer.parseInt(v[i].substring(2, v[i].length()-1));
-                    NodoList p = new NodoList(v[i]+"", size);
+                    int iJ = elem-1;
+                    Matriz[c][iJ] = size;
+                    NodoList p = new NodoList(elem, size);
                     NodoList q = ptr;
                     while(q.getLink() != null){
                         q = q.getLink();
